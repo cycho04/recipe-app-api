@@ -36,7 +36,7 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         user = get_user_model().objects.get(email=payload['email'])
         self.assertTrue(user.check_password(payload['password']))
-        self.assetNotIn('password', res.data)
+        self.assertNotIn('password', res.data)
 
     def test_user_with_email_error(self):
         """ test error returned if user with email exists """
